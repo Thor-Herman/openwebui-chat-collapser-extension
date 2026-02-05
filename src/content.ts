@@ -262,6 +262,18 @@ const addToggleToMessage = (messageElement: HTMLElement): void => {
 
   setupStickyDetection(preview);
 
+  // Auto-collapse if "collapse all" is active
+  if (state.isAllCollapsed) {
+    const content = contentWrapper;
+    const toggle = wrapper.querySelector<HTMLElement>(".collapse-toggle");
+
+    if (content && toggle) {
+      content.classList.add("collapsed");
+      toggle.classList.add("collapsed");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  }
+
   debugLog("Toggle added successfully");
 };
 
