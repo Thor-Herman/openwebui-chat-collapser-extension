@@ -1,0 +1,14 @@
+{
+  "name": "openwebui-chat-collapser",
+  "version": "1.0.0",
+  "description": "Add collapse/expand toggles to OpenWebUI chat messages",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "@types/chrome": "^0.0.258"
+  }
+}
