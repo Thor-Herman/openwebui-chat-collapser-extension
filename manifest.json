@@ -9,11 +9,14 @@
       "matches": [
         "*://localhost/*",
         "*://127.0.0.1/*",
-        "http://*/*",
-        "https://*/*"
+        "https://chat.netlight.com/*"
       ],
-      "js": ["dist/content.js"],
-      "css": ["styles.css"],
+      "js": [
+        "dist/content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
       "run_at": "document_idle"
     }
   ],
