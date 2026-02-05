@@ -260,7 +260,41 @@ const addToggleToMessage = (messageElement: HTMLElement): void => {
   preview.textContent =
     textContent.substring(0, 150) + (textContent.length > 150 ? "..." : "");
 
+  setupStickyDetection(preview);
+
   debugLog("Toggle added successfully");
+};
+
+const setupStickyDetection = (preview: HTMLElement): void => {
+  // Create a sentinel element above the preview
+  const sentinel = document.createElement("div");
+  sentinel.style.position = "absolute";
+  sentinel.style.top = "0";
+  sentinel.style.height = "1px";
+  sentinel.style.width = "100%";
+  sentinel.style.pointerEvents = "none";
+
+  // Insert sentinel before preview
+  preview.parentElement?.insertBefore(sentinel, preview);
+
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      // When sentinel is NOT intersecting, preview is stuck
+      if (!entry.isIntersecting) {
+        preview.classList.add("is-stuck");
+        debugLog("Preview is stuck");
+      } else {
+        preview.classList.remove("is-stuck");
+        debugLog("Preview is not stuck");
+      }
+    },
+    {
+      threshold: [0],
+      rootMargin: "0px",
+    }
+  );
+
+  observer.observe(sentinel);
 };
 
 // Process all messages in the chat

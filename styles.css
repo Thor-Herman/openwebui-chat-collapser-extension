@@ -154,12 +154,9 @@
   text-align: end;
 }
 
-.message-wrapper.assistant-message .collapse-line {
-  background: rgba(16, 185, 129, 0.3);
-}
-
-.message-wrapper.assistant-message .collapse-line:hover {
-  background: rgba(16, 185, 129, 0.5);
+.message-wrapper.user-message .message-preview.is-stuck {
+  background: rgba(79, 70, 229);
+  text-align: end;
 }
 
 /* When collapsed, make line dashed */
@@ -191,6 +188,7 @@
   min-width: 0; /* Allow flex item to shrink below content size */
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 /* Message Preview - shown when collapsed */
@@ -204,13 +202,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  display: none;
   margin-bottom: 4px;
   cursor: pointer;
+  position: sticky;
+  top: 2.5rem;
+  z-index: 1000000;
 }
 
 .message-preview:hover {
   background: rgba(0, 0, 0, 0.05);
+}
+
+.message-preview.is-stuck {
+  background: rgb(40, 40, 40);
 }
 
 /* Dark mode support for preview */
@@ -252,13 +256,3 @@
   padding-top: 0 !important;
   padding-bottom: 0 !important;
 }
-
-/* Show preview when collapsed */
-.message-wrapper:has(.message-content.collapsed) .message-preview {
-  display: block !important;
-}
-
-/* Hide preview when expanded
-.message-wrapper:not(:has(.message-content.collapsed)) .message-preview {
-  display: none !important;
-} */
